@@ -11,7 +11,7 @@ public class ConexaoDAO {
     public Connection conecta(){
         //variavel do tipo connection
         Connection conn = null;
-        
+       
         try {
             String url= "jdbc:mysql://localhost:3306/venda?user=root&password=12345";
             conn = DriverManager.getConnection(url);

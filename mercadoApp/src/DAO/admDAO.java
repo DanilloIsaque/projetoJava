@@ -90,4 +90,19 @@ public class admDAO {
         }
         
     }
+     public void excluirAdm(admDTO objAdmDto){
+        String sql = "DELETE FROM adm WHERE id_adm=?";
+        conn = new ConexaoDAO().conecta();
+        
+        try {
+            pstm =conn.prepareStatement(sql);
+            pstm.setInt(1,objAdmDto.getIdAdm());
+            JOptionPane.showMessageDialog(null,"Excluido com sucesso!");
+            
+            pstm.execute();
+            pstm.close();
+        } catch (SQLException erro) {
+            JOptionPane.showMessageDialog(null,"erro na classe admDAO , excluirAdm" + erro);
+        }
+    }
 }

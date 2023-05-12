@@ -51,6 +51,7 @@ public class frmAdmVIEW extends javax.swing.JFrame {
         btnCarregarCamposAdm = new javax.swing.JButton();
         btnLimpar = new javax.swing.JButton();
         btnAlterarAdm = new javax.swing.JButton();
+        btnExcluirAdm = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -119,6 +120,13 @@ public class frmAdmVIEW extends javax.swing.JFrame {
             }
         });
 
+        btnExcluirAdm.setText("Excluir");
+        btnExcluirAdm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirAdmActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -134,11 +142,15 @@ public class frmAdmVIEW extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(43, 43, 43)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(240, 240, 240)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(txtIdAdm, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGap(240, 240, 240)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(txtIdAdm, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(48, 48, 48)))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -149,10 +161,8 @@ public class frmAdmVIEW extends javax.swing.JFrame {
                                         .addGap(55, 55, 55)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(btnAlterarAdm)
-                                            .addComponent(btnLimpar)))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(48, 48, 48))))))
+                                            .addComponent(btnLimpar)
+                                            .addComponent(btnExcluirAdm)))))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(307, 307, 307)
                         .addComponent(btnCarregarCamposAdm)))
@@ -182,8 +192,10 @@ public class frmAdmVIEW extends javax.swing.JFrame {
                 .addGap(7, 7, 7)
                 .addComponent(jLabel2)
                 .addGap(5, 5, 5)
-                .addComponent(txtEmailAdm, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(13, 13, 13)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtEmailAdm, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnExcluirAdm))
+                .addGap(12, 12, 12)
                 .addComponent(jLabel3)
                 .addGap(3, 3, 3)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -233,6 +245,12 @@ public class frmAdmVIEW extends javax.swing.JFrame {
        LimparCamposAdm();
     }//GEN-LAST:event_btnAlterarAdmActionPerformed
 
+    private void btnExcluirAdmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirAdmActionPerformed
+        excluirAdm();
+        listarValoresAdm();
+        LimparCamposAdm();
+    }//GEN-LAST:event_btnExcluirAdmActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -272,6 +290,7 @@ public class frmAdmVIEW extends javax.swing.JFrame {
     private javax.swing.JButton btnAlterarAdm;
     private javax.swing.JButton btnCadastrarAdm;
     private javax.swing.JButton btnCarregarCamposAdm;
+    private javax.swing.JButton btnExcluirAdm;
     private javax.swing.JButton btnLimpar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -367,4 +386,16 @@ private void alterarAdm(){
    objAdmDao.alterarAdm(objAdmDto);
      
     }
+
+private void excluirAdm(){
+    int idAdm;
+    idAdm = Integer.parseInt(txtIdAdm.getText());
+    admDTO objAdmDto = new admDTO();
+    
+    objAdmDto.setIdAdm(idAdm);
+    
+    admDAO objAdmDao = new admDAO();
+    objAdmDao.excluirAdm(objAdmDto);
+    
+   }
 }
