@@ -5,7 +5,10 @@
 package VIEW;
 
 import DAO.categoriaDAO;
+import DAO.produtoDAO;
+import DTO.admDTO;
 import DTO.categoriaDTO;
+import DTO.produtoDTO;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -39,10 +42,15 @@ public class frmCategoriaVIEW extends javax.swing.JFrame {
         btnCadastrarCategoria = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabelaCategoria = new javax.swing.JTable();
+        btnAlterarCategoria = new javax.swing.JButton();
+        btnExcluirCategoria = new javax.swing.JButton();
+        btnCarregarCampos = new javax.swing.JButton();
+        txtCategoriaId = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("CRUD categoria");
+        jLabel1.setText("Tela de Categoria");
 
         jLabel2.setText("Nome da Categoria");
 
@@ -66,43 +74,91 @@ public class frmCategoriaVIEW extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tabelaCategoria);
 
+        btnAlterarCategoria.setText("Alterar");
+        btnAlterarCategoria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAlterarCategoriaActionPerformed(evt);
+            }
+        });
+
+        btnExcluirCategoria.setText("Excluir");
+        btnExcluirCategoria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirCategoriaActionPerformed(evt);
+            }
+        });
+
+        btnCarregarCampos.setText("Carregar Campos");
+        btnCarregarCampos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCarregarCamposActionPerformed(evt);
+            }
+        });
+
+        txtCategoriaId.setEnabled(false);
+
+        jLabel3.setText("ID");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(97, 97, 97)
-                        .addComponent(txtCategoriaNome, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnExcluirCategoria, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnCadastrarCategoria, javax.swing.GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE))
+                        .addGap(33, 33, 33)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnAlterarCategoria, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnCarregarCampos, javax.swing.GroupLayout.Alignment.TRAILING)))))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(btnCadastrarCategoria)))
-                .addContainerGap(38, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29))
+                        .addComponent(jLabel2))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel3))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(txtCategoriaId, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtCategoriaNome, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE))))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(17, 17, 17)
+                .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel3)
+                .addGap(2, 2, 2)
+                .addComponent(txtCategoriaId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(txtCategoriaNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(4, 4, 4)
-                .addComponent(btnCadastrarCategoria)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAlterarCategoria)
+                    .addComponent(btnCadastrarCategoria))
                 .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnExcluirCategoria)
+                    .addComponent(btnCarregarCampos))
+                .addGap(34, 34, 34)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addGap(29, 29, 29))
         );
 
         pack();
@@ -112,6 +168,23 @@ public class frmCategoriaVIEW extends javax.swing.JFrame {
         cadastrarCategoria();
         listarValoresCategoria();
     }//GEN-LAST:event_btnCadastrarCategoriaActionPerformed
+
+    private void btnCarregarCamposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCarregarCamposActionPerformed
+        CarregarCamposAdm();
+    }//GEN-LAST:event_btnCarregarCamposActionPerformed
+
+    private void btnAlterarCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarCategoriaActionPerformed
+        alterarCategoria();
+        listarValoresCategoria();
+        limparCampos();
+    }//GEN-LAST:event_btnAlterarCategoriaActionPerformed
+
+    private void btnExcluirCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirCategoriaActionPerformed
+        excluirCategoria();
+        listarValoresCategoria();
+        limparCampos();
+        
+    }//GEN-LAST:event_btnExcluirCategoriaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -148,52 +221,98 @@ public class frmCategoriaVIEW extends javax.swing.JFrame {
         });
     }
 
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAlterarCategoria;
     private javax.swing.JButton btnCadastrarCategoria;
+    private javax.swing.JButton btnCarregarCampos;
+    private javax.swing.JButton btnExcluirCategoria;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tabelaCategoria;
+    private javax.swing.JTextField txtCategoriaId;
     private javax.swing.JTextField txtCategoriaNome;
     // End of variables declaration//GEN-END:variables
 
+    private void CarregarCamposAdm() {
+        //aqui é o q será selecionado 
+        int carregar = tabelaCategoria.getSelectedRow();//vou selecionar a linha e aqi coloco qual a linha onde irá percorrer
 
-    public void cadastrarCategoria(){
-        String categoriaNome;
-        categoriaNome = txtCategoriaNome.getText();
-        
-        categoriaDTO objCategoriaDto = new categoriaDTO();
-        objCategoriaDto.setNomeCategoria(categoriaNome);
-        
-        categoriaDAO objCategoriaDao = new categoriaDAO();
-        objCategoriaDao.cadastrarCategoria(objCategoriaDto);
-        
+        txtCategoriaId.setText(tabelaCategoria.getModel().getValueAt(carregar, 0).toString());
+        txtCategoriaNome.setText(tabelaCategoria.getModel().getValueAt(carregar, 1).toString()); //peguei o campo de texto da tabela, linha/coluna e transformei em string
+
     }
     
-    public void listarValoresCategoria(){
+    private void limparCampos(){
     
-        try {
-                   //primeiro chamamos a dao de categoria
+        txtCategoriaNome.setText("");
+        txtCategoriaId.setText("");
+    }
+
+    public void cadastrarCategoria() {
+        String categoriaNome;
+        categoriaNome = txtCategoriaNome.getText();
+
+        categoriaDTO objCategoriaDto = new categoriaDTO();
+        objCategoriaDto.setNomeCategoria(categoriaNome);
+
         categoriaDAO objCategoriaDao = new categoriaDAO();
-         DefaultTableModel model =(DefaultTableModel)tabelaCategoria.getModel();
-         model.setNumRows(0);
-         
-         ArrayList<categoriaDTO> listaCategoria = objCategoriaDao.listarCategoria();
-         
-         for(int i =0;i<listaCategoria.size();i++ ){
-              model.addRow(new Object[]{//adiciona linha e abro o objeto para montar as colunas
-                listaCategoria.get(i).getIdCategoria(),
-                listaCategoria.get(i).getNomeCategoria(),
-               
-            });
-              
-              
-         }
+        objCategoriaDao.cadastrarCategoria(objCategoriaDto);
+
+    }
+
+    public void listarValoresCategoria() {
+
+        try {
+            //primeiro chamamos a dao de categoria
+            categoriaDAO objCategoriaDao = new categoriaDAO();
+            DefaultTableModel model = (DefaultTableModel) tabelaCategoria.getModel();
+            model.setNumRows(0);
+
+            ArrayList<categoriaDTO> listaCategoria = objCategoriaDao.listarCategoria();
+
+            for (int i = 0; i < listaCategoria.size(); i++) {
+                model.addRow(new Object[]{//adiciona linha e abro o objeto para montar as colunas
+                    listaCategoria.get(i).getIdCategoria(),
+                    listaCategoria.get(i).getNomeCategoria(),});
+
+            }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null,e);
+            JOptionPane.showMessageDialog(null, e);
         }
-     
+
+    }
+
+    private void alterarCategoria() {
+        int id_categoria;
+        String nome_categoria;
+
+        id_categoria = Integer.parseInt(txtCategoriaId.getText());//conversao de inteiro para string
+        nome_categoria = txtCategoriaNome.getText();
+
+        categoriaDTO objcategoriadto = new categoriaDTO();
+        objcategoriadto.setIdCategoria(id_categoria);
+        objcategoriadto.setNomeCategoria(nome_categoria);
+
+        categoriaDAO objcategoriadao = new categoriaDAO();
+        objcategoriadao.alterarCategoria(objcategoriadto);
+
+    }
+    
+    private void excluirCategoria(){
+        
+        int id_categoria;
+        
+        id_categoria = Integer.parseInt(txtCategoriaId.getText());
+        
+        categoriaDTO objcategoriadto = new categoriaDTO();
+        objcategoriadto.setIdCategoria(id_categoria);
+        
+        categoriaDAO objcategoriadao = new categoriaDAO();
+        objcategoriadao.excluirCategoria(objcategoriadto);
+        
     }
 
 }

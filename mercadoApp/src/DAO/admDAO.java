@@ -26,7 +26,7 @@ public class admDAO {
     ResultSet rs;
     ArrayList<admDTO> listaAdm = new ArrayList<>();
     
-    public void cadastrarAdm(admDTO objAdmDto ){
+    public void cadastrarAdm(admDTO objAdmDto){
         String sql = "INSERT INTO adm (nome_adm,email_adm,senha_adm) values(?,?,?)";
         conn = new ConexaoDAO().conecta();
         
@@ -91,6 +91,7 @@ public class admDAO {
         
     }
      public void excluirAdm(admDTO objAdmDto){
+         
         String sql = "DELETE FROM adm WHERE id_adm=?";
         conn = new ConexaoDAO().conecta();
         
