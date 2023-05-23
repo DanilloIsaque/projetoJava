@@ -17,14 +17,16 @@ public class produtoDAO {
 
     public void cadastrarPoduto(produtoDTO objprodutodto) {
 
-        String sql = "INSERT INTO produto (nome_produto,preco_produto,qtd_produto) VALUES (?,?,?)";
+        String sql = "INSERT INTO produto (nome_produto,preco_produto,qtd_estoque,id_categoria) VALUES (?,?,?,?)";
         conn = new ConexaoDAO().conecta();
 
         try {
             pstm = conn.prepareStatement(sql);
             pstm.setString(1, objprodutodto.getNome_produto());
-            pstm.setString(1, objprodutodto.getPreco_produto());
-            pstm.setString(1, objprodutodto.getQtd_produto());
+            pstm.setString(2, objprodutodto.getPreco_produto());
+            pstm.setString(3, objprodutodto.getQtd_produto());
+            pstm.setInt(4, objprodutodto.getId_categoria());
+
             JOptionPane.showMessageDialog(null, "Produto cadastrado com sucesso!");
             pstm.execute();
             pstm.close();
@@ -50,7 +52,7 @@ public class produtoDAO {
                 objprodutodto.setPreco_produto(rs.getString("Preco_produto"));
                 objprodutodto.setQtd_produto(rs.getString("Qtd_estoque"));
                 objprodutodto.setId_categoria(rs.getInt("id_categoria"));
-                
+
                 listaProduto.add(objprodutodto);
             }
 
@@ -58,8 +60,67 @@ public class produtoDAO {
 
             JOptionPane.showMessageDialog(null, "Erro no listar produtoDAO" + erro);
         }
-            return listaProduto;
+        return listaProduto;
     }
-    
-    
+
+    public ResultSet listarCategoria() {
+        String sql = "SELECT * FROM categoria";
+        conn = new ConexaoDAO().conecta();
+
+        try {
+
+            pstm = conn.prepareStatement(sql);
+            return pstm.executeQuery();
+
+        } catch (SQLException erro) {
+
+            JOptionPane.showMessageDialog(null, "Erro no listar Produtodao" + erro);
+
+            return null;
+        }
+
+    }
+
+    public void excluirProduto(produtoDTO objprodutodto) {
+
+        String sql = "DELETE FROM produto WHERE id_produto=?";
+        conn = new ConexaoDAO().conecta();
+
+        try {
+
+            pstm = conn.prepareStatement(sql);
+            pstm.setInt(1, objprodutodto.getId_produto());
+            JOptionPane.showMessageDialog(null, "Excluido com sucesso!");
+
+            pstm.execute();
+            pstm.close();
+
+        } catch (SQLException erro) {
+            JOptionPane.showMessageDialog(null, "Erro ao excluir produtodao" + erro);
+
+        }
+
+    }
+
+    public void alterarProduto(produtoDTO objprodutodto) {
+
+        String sql = "UPDATE produto SET nome_produto=?, preco_produto=?, qtd_estoque=?,id_categoria=? WHERE id_produto=?";
+        conn = new ConexaoDAO().conecta();
+
+        try {
+            pstm = conn.prepareStatement(sql);
+            pstm.setString(1, objprodutodto.getNome_produto()); //primeiro parametro q setamos(?), o q vem como parametro 
+            pstm.setString(2, objprodutodto.getPreco_produto());
+            pstm.setString(3, objprodutodto.getQtd_produto());
+            pstm.setInt(4, objprodutodto.getId_categoria());
+            pstm.setInt(5, objprodutodto.getId_produto());
+            
+            JOptionPane.showMessageDialog(null, "Alterado com sucesso!");
+
+            pstm.execute();
+            pstm.close();
+        } catch (SQLException erro) {
+            JOptionPane.showMessageDialog(null, "erro na classe produtoDao alterar produto" + erro);
+        }
+    }
 }

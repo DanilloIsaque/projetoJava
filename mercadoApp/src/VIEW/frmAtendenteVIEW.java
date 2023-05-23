@@ -10,7 +10,7 @@ import DAO.atendenteDAO;
 import javax.swing.JOptionPane;
 import java.sql.SQLException;
 import javax.swing.table.DefaultTableModel;
-import java.util.ArrayList;
+    import java.util.ArrayList;
 
 /**
  *
