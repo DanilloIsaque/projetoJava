@@ -74,7 +74,7 @@ public class admDAO {
      }
     
     public void alterarAdm(admDTO objAdmDto){
-          String sql = "UPDATE adm SET nome_adm=?, email_adm=?, senha_adm=?,identificacao_adm=? WHERE id_adm=?";
+          String sql = "UPDATE funcionario SET nome_funcionario=?, usuario_funcionario=?, senha_funcionario=?,identificacao_funcionario=? WHERE id_funcionario=?";
         conn = new ConexaoDAO().conecta();
         
         try {
@@ -94,7 +94,7 @@ public class admDAO {
         
     }
      public void excluirAdm(admDTO objAdmDto){
-        String sql = "DELETE FROM adm WHERE id_adm=?";
+        String sql = "DELETE FROM funcionario WHERE id_funcionario=?";
         conn = new ConexaoDAO().conecta();
         
         try {

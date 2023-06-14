@@ -349,11 +349,17 @@ public class frmAdmVIEW extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
 private void cadastrarAdm(){
-    // recebemos do usuário e passamospara dto , dpois executamos um método para DAO
+    // recebemos do usuário e passamos para dto , dpois executamos um método para DAO
             String nomeAdm, emailAdm, senhaAdm;
             int identificacaoAdm = 0 ;
-            
-            
+            /*
+         while((txtNomeAdm.getText().isEmpty())||(txtEmailAdm.getText().isEmpty())
+                 ||(new String(txtSenhaAdm.getPassword())).isEmpty()||(!rbAdm.isSelected()))   
+         {    
+            JOptionPane.showMessageDialog(null,"Faltou alguns campos serem preenchidos.");
+          
+            break;
+         }  */
             nomeAdm= txtNomeAdm.getText();
             emailAdm = txtEmailAdm.getText();
             senhaAdm= new String(txtSenhaAdm.getPassword()).trim();

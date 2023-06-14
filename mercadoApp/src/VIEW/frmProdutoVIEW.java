@@ -50,7 +50,6 @@ public class frmProdutoVIEW extends javax.swing.JFrame {
         btnCadastrarProduto = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabelaProduto = new javax.swing.JTable();
-        btnListarProduto = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -100,13 +99,6 @@ public class frmProdutoVIEW extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tabelaProduto);
 
-        btnListarProduto.setText("Listar");
-        btnListarProduto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnListarProdutoActionPerformed(evt);
-            }
-        });
-
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel5.setText("Tela de Produto");
 
@@ -137,9 +129,7 @@ public class frmProdutoVIEW extends javax.swing.JFrame {
                                     .addComponent(cbxCategoria, 0, 160, Short.MAX_VALUE)
                                     .addComponent(btnCadastrarProduto))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 346, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnListarProduto))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 346, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(73, 73, 73))))
         );
         layout.setVerticalGroup(
@@ -167,18 +157,12 @@ public class frmProdutoVIEW extends javax.swing.JFrame {
                         .addComponent(cbxCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCadastrarProduto)
-                    .addComponent(btnListarProduto))
+                .addComponent(btnCadastrarProduto)
                 .addContainerGap(35, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnListarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarProdutoActionPerformed
-        
-    }//GEN-LAST:event_btnListarProdutoActionPerformed
 
     private void txtQtdProdutoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtQtdProdutoKeyTyped
         caracter(evt);
@@ -235,7 +219,6 @@ public class frmProdutoVIEW extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCadastrarProduto;
-    private javax.swing.JButton btnListarProduto;
     private javax.swing.JComboBox<String> cbxCategoria;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -296,7 +279,7 @@ public class frmProdutoVIEW extends javax.swing.JFrame {
         if(!caracter.contains(e.getKeyChar() +"" )){
             e.consume();//ao pressionar a tecla, ele analisará os caracteres selecionados
             JOptionPane.showMessageDialog(null, "Só é aceito números nesse campo");
-        }
+        }  
     }
     private void caracterP(KeyEvent e){
         String caracter="0123456789.,";
@@ -312,12 +295,13 @@ public class frmProdutoVIEW extends javax.swing.JFrame {
         double precoProduto;
         int idCategoria;
         
+        
         nomeProduto = txtNomeProduto.getText();
-        precoProduto =Integer.parseInt(txtPrecoProduto.getText());
+        precoProduto =Double.parseDouble(txtPrecoProduto.getText());
         qtdProduto=Integer.parseInt(txtQtdProduto.getText());
         idCategoria=id_categoria.get(cbxCategoria.getSelectedIndex());//pegqamoso elemento do vetor na funcao de dadosCategoria
         
-        produtoDTO objProdutoDto = new produtoDTO();
+        produtoDTO objProdutoDto = new produtoDTO(idCategoria,qtdProduto,nomeProduto,precoProduto);
         objProdutoDto.setNome_produto(nomeProduto);
         objProdutoDto.setPreco_produto(precoProduto);
         objProdutoDto.setQtd_produto(qtdProduto);

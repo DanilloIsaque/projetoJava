@@ -14,7 +14,71 @@ public class produtoDAO {
     PreparedStatement pstm;
     ResultSet rs;
     ArrayList<produtoDTO> listaProduto = new ArrayList<>();
+   
 
+ 
+    
+    public produtoDTO getProduto(String nomeProduto){
+       return this.getProdutoNome(nomeProduto);
+    }
+   
+    public produtoDTO retornarValores(int id_produto){
+          produtoDTO objProdutoDto = new produtoDTO();
+           String sql = "SELECT id_produto,nome_produto,preco_produto,qtd_estoque,id_categoria FROM produto where id_produto = '"+id_produto+"'";
+        conn = new ConexaoDAO().conecta();
+         try {
+
+            pstm = conn.prepareStatement(sql);
+            rs = pstm.executeQuery();
+
+            while (rs.next()) {//enquanto tiver linhas, vai ficar nesse looping
+               
+                //basicamente , pegamos um valor do banco , armazenamos na dto e dps exibimos
+                objProdutoDto.setId_produto(rs.getInt("id_produto"));//acessamos a classe , pegamos a informacao no result set e entao passamos o o atributo para a variavel
+                objProdutoDto.setNome_produto(rs.getString("nome_produto"));
+                objProdutoDto.setPreco_produto(rs.getDouble("preco_produto"));
+                objProdutoDto.setQtd_produto(rs.getInt("qtd_estoque"));
+                objProdutoDto.setId_categoria(rs.getInt("id_categoria"));
+                
+                
+            }
+
+        } catch (SQLException erro) {
+
+            JOptionPane.showMessageDialog(null, "Erro no listar produtoDAO" + erro);
+        }
+            return objProdutoDto;
+        
+    }
+    
+    public produtoDTO getProdutoNome(String nomeProduto){
+        produtoDTO objProdutoDto = new produtoDTO();
+           String sql = "SELECT id_produto,nome_produto,preco_produto,qtd_estoque,id_categoria FROM produto where nome_produto = '"+nomeProduto+"'";
+        conn = new ConexaoDAO().conecta();
+         try {
+
+            pstm = conn.prepareStatement(sql);
+            rs = pstm.executeQuery();
+
+            while (rs.next()) {//enquanto tiver linhas, vai ficar nesse looping
+               
+                //basicamente , pegamos um valor do banco , armazenamos na dto e dps exibimos
+                objProdutoDto.setId_produto(rs.getInt("id_produto"));//acessamos a classe , pegamos a informacao no result set e entao passamos o o atributo para a variavel
+                objProdutoDto.setNome_produto(rs.getString("nome_produto"));
+                objProdutoDto.setPreco_produto(rs.getDouble("preco_produto"));
+                objProdutoDto.setQtd_produto(rs.getInt("qtd_estoque"));
+                objProdutoDto.setId_categoria(rs.getInt("id_categoria"));
+                
+                
+            }
+
+        } catch (SQLException erro) {
+
+            JOptionPane.showMessageDialog(null, "Erro no listar produtoDAO" + erro);
+        }
+            return objProdutoDto;
+        
+    }
     public void cadastrarPoduto(produtoDTO objprodutodto) {
 
         String sql = "INSERT INTO produto (nome_produto,preco_produto,qtd_estoque,id_categoria) VALUES (?,?,?,?)";
@@ -75,6 +139,18 @@ public class produtoDAO {
         }
         
     }
-    
+     public ResultSet listarProdutoCbx(){
+        conn = new ConexaoDAO().conecta();
+        String sql="SELECT * FROM produto ORDER BY nome_produto";
+        
+        try {
+            pstm=conn.prepareStatement(sql);
+            return pstm.executeQuery();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null,"erro no metodo listarProdutoCbx em produtoDAO" +  e.getMessage());
+            return null;
+        }
+        
+    }
     
 }

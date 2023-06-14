@@ -8,6 +8,23 @@ public class produtoDTO {
         return id_produto;
     }
 
+    public produtoDTO(){
+      
+    }
+    
+    
+    public produtoDTO( int id_categoria, int qtd_produto, String nome_produto, double preco_produto) {
+       
+        this.id_categoria = id_categoria;
+        this.qtd_produto = qtd_produto;
+        this.nome_produto = nome_produto;
+        this.preco_produto = preco_produto;
+    }
+
+      public String getValorExibicao() {
+            return nome_produto;
+      } 
+    
     public void setId_produto(int id_produto) {
         this.id_produto = id_produto;
     }
@@ -42,5 +59,17 @@ public class produtoDTO {
 
     public void setQtd_produto(int qtd_produto) {
         this.qtd_produto = qtd_produto;
+    }
+    public void decrementarEstoque() {
+        qtd_produto--;
+    }
+
+    public void incrementarEstoque() {
+       qtd_produto++;
+    }
+    
+    @Override
+    public String toString(){
+        return nome_produto;
     }
 }
