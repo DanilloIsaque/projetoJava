@@ -28,8 +28,8 @@ public class vendaItemDAO {
             int cont =objItem.size();
             for(int i = 0;i<cont;i++){
             
-               pstm = conn.prepareStatement(sql);
-            pstm.setInt(1,objItem.get(i).getIDproduto());
+             pstm = conn.prepareStatement(sql);
+            pstm.setInt(1,objItem.get(i).getIdVenda());
             pstm.setInt(2, objItem.get(i).getIDproduto());
             pstm.setDouble(3,objItem.get(i).getValor());
             pstm.setInt(4, objItem.get(i).getQuantidade());

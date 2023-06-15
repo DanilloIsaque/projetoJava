@@ -1,5 +1,6 @@
 package DAO;
 
+import DTO.categoriaDTO;
 import DTO.produtoDTO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -99,7 +100,7 @@ public class produtoDAO {
     }
 
     public ArrayList<produtoDTO> listarProduto() {
-        String sql = "SELECT * FROM produto";
+        String sql = " SELECT p.id_produto,p.nome_produto,p.preco_produto,p.qtd_estoque, c.nome_categoria FROM produto p INNER JOIN categoria c ON p.id_categoria = c.id_categoria";
         conn = new ConexaoDAO().conecta();
 
         try {
@@ -109,12 +110,14 @@ public class produtoDAO {
 
             while (rs.next()) {//enquanto tiver linhas, vai ficar nesse looping
                 produtoDTO objprodutodto = new produtoDTO();
+                categoriaDTO objCategoriaDto = new categoriaDTO();
+                objCategoriaDto.setNomeCategoria(rs.getString("c.nome_categoria"));
                 //basicamente , pegamos um valor do banco , armazenamos na dto e dps exibimos
-                objprodutodto.setId_produto(rs.getInt("id_produto"));//acessamos a classe , pegamos a informacao no result set e entao passamos o o atributo para a variavel
-                objprodutodto.setNome_produto(rs.getString("nome_produto"));
-                objprodutodto.setPreco_produto(rs.getDouble("preco_produto"));
-                objprodutodto.setQtd_produto(rs.getInt("qtd_estoque"));
-                objprodutodto.setId_categoria(rs.getInt("id_categoria"));
+                objprodutodto.setId_produto(rs.getInt("p.id_produto"));//acessamos a classe , pegamos a informacao no result set e entao passamos o o atributo para a variavel
+                objprodutodto.setNome_produto(rs.getString("p.nome_produto"));
+                objprodutodto.setPreco_produto(rs.getDouble("p.preco_produto"));
+                objprodutodto.setQtd_produto(rs.getInt("p.qtd_estoque"));
+                objprodutodto.setCategoria(objCategoriaDto);
                 
                 listaProduto.add(objprodutodto);
             }
@@ -152,5 +155,42 @@ public class produtoDAO {
         }
         
     }
+     
+     public void alterarProduto(produtoDTO objProdutoDto){
+         String sql="UPDATE produto SET nome_produto =?,preco_produto=?,qtd_estoque=?,id_categoria=? WHERE id_produto=?";
+         conn= new ConexaoDAO().conecta();
+         
+         try {
+             pstm= conn.prepareStatement(sql);
+             pstm.setString(1, objProdutoDto.getNome_produto());
+             pstm.setDouble(2, objProdutoDto.getPreco_produto());
+             pstm.setInt(3, objProdutoDto.getQtd_produto());
+             pstm.setInt(4, objProdutoDto.getId_categoria());
+             pstm.setInt(5, objProdutoDto.getId_produto());
+             
+             pstm.execute();
+             pstm.close();
+             JOptionPane.showMessageDialog(null, "Produto atualizado");
+             
+         } catch (SQLException erro) {
+             JOptionPane.showMessageDialog(null,"erro na classe produtoDAO , alterarProduto" + erro);
+         }
+     }
     
+     public void excluirProduto(produtoDTO objProdutoDto){
+         String sql="DELETE FROM produto WHERE id_produto=?";
+         conn= new ConexaoDAO().conecta();
+         
+         try {
+             pstm = conn.prepareStatement(sql);
+             pstm.setInt(1,objProdutoDto.getId_produto());
+             pstm.execute();
+             pstm.close();
+             
+             
+             
+         } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null,"erro na classe produtoDAO , excluirProduto" + e);
+         }
+     }
 }

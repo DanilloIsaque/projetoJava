@@ -4,6 +4,7 @@ public class produtoDTO {
     private int id_produto,id_categoria,qtd_produto;
     private String nome_produto;
     private double preco_produto;
+    private categoriaDTO categoria;
     public int getId_produto() {
         return id_produto;
     }
@@ -67,6 +68,15 @@ public class produtoDTO {
     public void incrementarEstoque() {
        qtd_produto++;
     }
+
+    public categoriaDTO getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(categoriaDTO categoria) {
+        this.categoria = categoria;
+    }
+    
     
     @Override
     public String toString(){

@@ -13,6 +13,8 @@ public class Item {
     private int idVenda;
     int quantidade;
     double valor;
+    private produtoDTO produto;
+    private vendaDTO venda;
 
     public void setValor(double valor) {
         this.valor = valor;
@@ -49,6 +51,24 @@ public class Item {
     public void setQuantidade(int quantidade) {
         this.quantidade = quantidade;
     }
+
+    public produtoDTO getProduto() {
+        return produto;
+    }
+
+    public void setProduto(produtoDTO produto) {
+        this.produto = produto;
+    }
+
+    public vendaDTO getVenda() {
+        return venda;
+    }
+
+    public void setVenda(vendaDTO venda) {
+        this.venda = venda;
+    }
+    
+    
     
     
 }

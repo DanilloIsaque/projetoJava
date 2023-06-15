@@ -16,19 +16,32 @@ public class vendaDAO {
     Connection conn;
     PreparedStatement pstm;
     ResultSet rs;
+
+
     
-    public void cadastrarVenda(vendaDTO objVendaDTO){
+    public int cadastrarVenda(vendaDTO objVendaDTO){
           String sql = "INSERT INTO vendas (data_venda,valor_total) VALUES (?,?)";
         conn = new ConexaoDAO().conecta();
+        int id= 0;
         try {
                pstm = conn.prepareStatement(sql);
             pstm.setDate(1, (Date) objVendaDTO.getDataVenda());
             pstm.setDouble(2, objVendaDTO.getValorTotal());
             pstm.execute();
-            pstm.close();
-        } catch (SQLException erro) {
-          JOptionPane.showMessageDialog(null, "Erro na pagina vendaDAO , cadastro" + erro);
+             rs = pstm.executeQuery("SELECT last_insert_id()");
+             while(rs.next()){
+                 id= rs.getInt(1);
+             }
+             
+             pstm.close();
+           
+           return id;
+        } catch (Exception erro) {
+        
+            return 0;
         }
+        
+        
     }
             
 }

@@ -16,27 +16,30 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `categoria`
+-- Table structure for table `funcionario`
 --
 
-DROP TABLE IF EXISTS `categoria`;
+DROP TABLE IF EXISTS `funcionario`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `categoria` (
-  `id_categoria` int NOT NULL AUTO_INCREMENT,
-  `nome_categoria` varchar(45) NOT NULL,
-  PRIMARY KEY (`id_categoria`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `funcionario` (
+  `id_funcionario` int NOT NULL AUTO_INCREMENT,
+  `nome_funcionario` varchar(45) NOT NULL,
+  `usuario_funcionario` varchar(45) NOT NULL,
+  `senha_funcionario` varchar(45) NOT NULL,
+  `identificacao_funcionario` tinyint(1) NOT NULL,
+  PRIMARY KEY (`id_funcionario`)
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `categoria`
+-- Dumping data for table `funcionario`
 --
 
-LOCK TABLES `categoria` WRITE;
-/*!40000 ALTER TABLE `categoria` DISABLE KEYS */;
-INSERT INTO `categoria` VALUES (1,'teste'),(2,'teste2'),(3,'deletar5'),(4,'oi'),(5,'teste5'),(6,'oiii'),(7,'dani');
-/*!40000 ALTER TABLE `categoria` ENABLE KEYS */;
+LOCK TABLES `funcionario` WRITE;
+/*!40000 ALTER TABLE `funcionario` DISABLE KEYS */;
+INSERT INTO `funcionario` VALUES (13,'atd','atd','atd',0),(14,'admin','admin','admin',1);
+/*!40000 ALTER TABLE `funcionario` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -48,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-06-14 20:04:21
+-- Dump completed on 2023-06-15 17:25:12

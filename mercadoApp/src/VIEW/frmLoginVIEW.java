@@ -41,8 +41,8 @@ public class frmLoginVIEW extends javax.swing.JFrame {
         txtNomeUser = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        txtSenhaUser = new javax.swing.JTextField();
         btnLoginUser = new javax.swing.JButton();
+        txtSenhaUser = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -65,14 +65,18 @@ public class frmLoginVIEW extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(133, 133, 133)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel1)
-                    .addComponent(txtNomeUser)
-                    .addComponent(txtSenhaUser)
-                    .addComponent(btnLoginUser, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(txtSenhaUser, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(133, 133, 133)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel1)
+                            .addComponent(txtNomeUser)
+                            .addComponent(btnLoginUser, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(130, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -143,7 +147,7 @@ public class frmLoginVIEW extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JTextField txtNomeUser;
-    private javax.swing.JTextField txtSenhaUser;
+    private javax.swing.JPasswordField txtSenhaUser;
     // End of variables declaration//GEN-END:variables
 
     public void limparCampos() {
@@ -158,7 +162,7 @@ public class frmLoginVIEW extends javax.swing.JFrame {
             String email_usuario, senha_usuario;
 
             email_usuario = txtNomeUser.getText();
-            senha_usuario = txtSenhaUser.getText();
+            senha_usuario =  new String(txtSenhaUser.getPassword()).trim();
             
             ConexaoDAO objConexaoDao = new ConexaoDAO();
 

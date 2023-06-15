@@ -41,6 +41,7 @@ Connection conn;
   produtoDTO objProdutoDto = new produtoDTO();
   vendaDTO objVendaDto = new vendaDTO();
   vendaDAO objVendaDao = new vendaDAO();
+  vendaItemDAO objItemDao = new vendaItemDAO();
   Item objItem = new Item();
   private ArrayList<produtoDTO> produtos;
   ArrayList<Item> listaCompra = new ArrayList<>();
@@ -79,6 +80,7 @@ Connection conn;
         txtValorTotal = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         btnLimparForm = new javax.swing.JButton();
+        btnVoltar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -150,6 +152,13 @@ Connection conn;
             }
         });
 
+        btnVoltar.setText("Voltar");
+        btnVoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVoltarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -168,7 +177,7 @@ Connection conn;
                             .addGroup(layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(txtValorTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 117, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 119, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -197,14 +206,16 @@ Connection conn;
                         .addGap(101, 101, 101))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(17, 17, 17))))
+                        .addGap(17, 17, 17))
+                    .addComponent(btnVoltar, javax.swing.GroupLayout.Alignment.TRAILING)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(36, 36, 36)
+                        .addComponent(btnVoltar)
+                        .addGap(13, 13, 13)
                         .addComponent(jLabel5)
                         .addGap(3, 3, 3)
                         .addComponent(txtxIdProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -315,6 +326,7 @@ Connection conn;
 
     private void btnFinalizarCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarCompraActionPerformed
         listaCompra = new ArrayList<>(); //zerar
+         int id_venda=0;
         
     try {
         objVendaDto.setDataVenda(conversaoDataEua(new java.util.Date(System.currentTimeMillis())));
@@ -324,21 +336,32 @@ Connection conn;
     }
     
     objVendaDto.setValorTotal(Double.parseDouble(txtValorTotal.getText()));
-        objVendaDao.cadastrarVenda(objVendaDto);
+        
 
-  
-    
+  id_venda= objVendaDao.cadastrarVenda(objVendaDto);
+   
     int cont = tbCarrinho.getRowCount();
     for(int i =0; i<cont;i++){
        objItem=new Item();
         objItem.setIDproduto((int)tbCarrinho.getValueAt(i,0));
-         objItem.setQuantidade((int)tbCarrinho.getValueAt(i, 2));
+        objItem.setIdVenda(id_venda);
+         objItem.setQuantidade(Integer.parseInt(tbCarrinho.getValueAt(i, 2).toString()));
          objItem.setValor((double)tbCarrinho.getValueAt(i, 3));
          listaCompra.add(objItem);
      
     }
+    objItemDao.cadastrarProdutoVenda(listaCompra);
+    JOptionPane.showMessageDialog(null, "Venda realizada com sucesso");
+    limparFormulario();
+    
     
     }//GEN-LAST:event_btnFinalizarCompraActionPerformed
+
+    private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
+       frmMainAtendenteVIEW atendente = new frmMainAtendenteVIEW();
+       atendente.setVisible(true);
+       dispose();
+    }//GEN-LAST:event_btnVoltarActionPerformed
 
     public java.sql.Date conversaoDataEua(Date pData) throws Exception{
         SimpleDateFormat formatarDate = new SimpleDateFormat("yyyy/MM/dd");
@@ -417,6 +440,7 @@ Connection conn;
     public javax.swing.JButton btnAddCarrinho;
     private javax.swing.JButton btnFinalizarCompra;
     private javax.swing.JButton btnLimparForm;
+    private javax.swing.JButton btnVoltar;
     private javax.swing.JComboBox<String> cbxProduto;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
