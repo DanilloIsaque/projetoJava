@@ -30,7 +30,6 @@ public class frmMainAtendenteVIEW extends javax.swing.JFrame {
         btnProdutos = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         btnVender = new javax.swing.JButton();
-        btnConsultar = new javax.swing.JButton();
         btnLogout = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -52,13 +51,6 @@ public class frmMainAtendenteVIEW extends javax.swing.JFrame {
             }
         });
 
-        btnConsultar.setText("Consultar vendas");
-        btnConsultar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnConsultarActionPerformed(evt);
-            }
-        });
-
         btnLogout.setText("Logout");
         btnLogout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -73,8 +65,7 @@ public class frmMainAtendenteVIEW extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(110, 110, 110)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnConsultar, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)
-                    .addComponent(btnVender, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnVender, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)
                     .addComponent(btnProdutos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
@@ -91,13 +82,11 @@ public class frmMainAtendenteVIEW extends javax.swing.JFrame {
                         .addGap(17, 17, 17)
                         .addComponent(jLabel2))
                     .addComponent(btnLogout))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
-                .addComponent(btnConsultar)
-                .addGap(28, 28, 28)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
                 .addComponent(btnVender)
-                .addGap(37, 37, 37)
+                .addGap(42, 42, 42)
                 .addComponent(btnProdutos)
-                .addGap(87, 87, 87))
+                .addGap(102, 102, 102))
         );
 
         pack();
@@ -109,12 +98,6 @@ public class frmMainAtendenteVIEW extends javax.swing.JFrame {
        dispose();
     }//GEN-LAST:event_btnVenderActionPerformed
 
-    private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
-        frmRelatorio relatorio = new frmRelatorio();
-        relatorio.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_btnConsultarActionPerformed
-
     private void btnProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProdutosActionPerformed
          frmVerProduto produto = new frmVerProduto();
         produto.setVisible(true);
@@ -122,7 +105,9 @@ public class frmMainAtendenteVIEW extends javax.swing.JFrame {
     }//GEN-LAST:event_btnProdutosActionPerformed
 
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
-        System.exit(0);
+      frmLoginVIEW login = new frmLoginVIEW();
+      login.setVisible(true);
+      dispose();
     }//GEN-LAST:event_btnLogoutActionPerformed
 
     /**
@@ -161,7 +146,6 @@ public class frmMainAtendenteVIEW extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnConsultar;
     private javax.swing.JButton btnLogout;
     private javax.swing.JButton btnProdutos;
     private javax.swing.JButton btnVender;

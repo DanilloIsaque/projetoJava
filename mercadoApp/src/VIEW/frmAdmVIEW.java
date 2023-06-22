@@ -56,6 +56,8 @@ public class frmAdmVIEW extends javax.swing.JFrame {
         rbAdm = new javax.swing.JRadioButton();
         rbAtendente = new javax.swing.JRadioButton();
         btnVoltar = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        txtIdade = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -83,13 +85,13 @@ public class frmAdmVIEW extends javax.swing.JFrame {
 
         tabelaAdm.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Id", "Nome", "Nome de Usuário", "Senha"
+                "Id", "Nome", "Nome de Usuário", "Senha", "Função", "Idade"
             }
         ));
         jScrollPane1.setViewportView(tabelaAdm);
@@ -149,53 +151,70 @@ public class frmAdmVIEW extends javax.swing.JFrame {
             }
         });
 
+        jLabel6.setText("Idade");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGap(47, 47, 47)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(65, 65, 65)
-                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtIdAdm, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(jLabel2)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(rbAtendente, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(rbAdm, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(txtSenhaAdm, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnExcluirAdm))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(43, 43, 43)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtEmailAdm, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtNomeAdm, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(55, 55, 55)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btnAlterarAdm)
-                                    .addComponent(btnLimpar)
-                                    .addComponent(btnExcluirAdm)))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(rbAtendente, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(rbAdm, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(txtSenhaAdm, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(btnCadastrarAdm)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGap(65, 65, 65)
+                                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(txtIdAdm, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel2)
+                                        .addGap(193, 193, 193)
+                                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(btnCadastrarAdm)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(43, 43, 43)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(txtEmailAdm, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(txtNomeAdm, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(76, 76, 76)
+                                        .addComponent(txtIdade, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(0, 0, Short.MAX_VALUE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addGap(307, 307, 307)
+                                .addComponent(btnCarregarCamposAdm))
+                            .addComponent(btnVoltar, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addGap(25, 25, 25)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 461, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 89, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(307, 307, 307)
-                        .addComponent(btnCarregarCamposAdm))
-                    .addComponent(btnVoltar))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 31, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 421, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28))
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnLimpar)
+                            .addComponent(btnAlterarAdm))))
+                .addGap(33, 33, 33))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -203,51 +222,55 @@ public class frmAdmVIEW extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnVoltar)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(17, 17, 17)
-                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(24, 24, 24)
-                        .addComponent(jLabel1))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtIdAdm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(12, 12, 12)
-                .addComponent(txtNomeAdm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12)
-                .addComponent(jLabel2)
-                .addGap(5, 5, 5)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtEmailAdm, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnExcluirAdm))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btnVoltar)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(17, 17, 17)
+                                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(9, 9, 9)
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txtNomeAdm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtIdAdm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(46, 46, 46)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel6))
+                        .addGap(5, 5, 5)
+                        .addComponent(txtEmailAdm, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(txtIdade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(12, 12, 12)
                         .addComponent(jLabel3))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addComponent(txtSenhaAdm, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtSenhaAdm, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnExcluirAdm))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(rbAdm)
                             .addComponent(rbAtendente))))
                 .addGap(3, 3, 3)
                 .addComponent(btnLimpar)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addComponent(btnAlterarAdm)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnCarregarCamposAdm)
-                        .addContainerGap())
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnCadastrarAdm)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addGap(12, 12, 12)
+                .addComponent(btnCadastrarAdm)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                .addComponent(btnAlterarAdm)
+                .addGap(15, 15, 15)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnCarregarCamposAdm)
+                .addContainerGap())
         );
 
         pack();
@@ -356,12 +379,14 @@ public class frmAdmVIEW extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JRadioButton rbAdm;
     private javax.swing.JRadioButton rbAtendente;
     private javax.swing.JTable tabelaAdm;
     private javax.swing.JTextField txtEmailAdm;
     private javax.swing.JTextField txtIdAdm;
+    private javax.swing.JTextField txtIdade;
     private javax.swing.JTextField txtNomeAdm;
     private javax.swing.JPasswordField txtSenhaAdm;
     // End of variables declaration//GEN-END:variables
@@ -369,19 +394,17 @@ public class frmAdmVIEW extends javax.swing.JFrame {
 private void cadastrarAdm(){
     // recebemos do usuário e passamos para dto , dpois executamos um método para DAO
             String nomeAdm, emailAdm, senhaAdm;
-            int identificacaoAdm = 0 ;
-            /*
-         while((txtNomeAdm.getText().isEmpty())||(txtEmailAdm.getText().isEmpty())
-                 ||(new String(txtSenhaAdm.getPassword())).isEmpty()||(!rbAdm.isSelected()))   
-         {    
-            JOptionPane.showMessageDialog(null,"Faltou alguns campos serem preenchidos.");
-          
-            break;
-         }  */
+            int identificacaoAdm = 0,idade ;
+            
+            if(txtNomeAdm.getText().equals("")||txtIdade.getText().equals("")||txtSenhaAdm.getPassword().equals("") || txtEmailAdm.getText().equals("")||rbAdm.getText().equals("")){
+            
+            JOptionPane.showMessageDialog(null, "Alguns faltaram ser preenchidos.");
+            }else{
+            
             nomeAdm= txtNomeAdm.getText();
             emailAdm = txtEmailAdm.getText();
             senhaAdm= new String(txtSenhaAdm.getPassword()).trim();
-            
+            idade = Integer.parseInt(txtIdade.getText());
             if(rbAdm.isSelected()){
                 identificacaoAdm = 1;
             }else if(rbAtendente.isSelected()){
@@ -398,9 +421,11 @@ private void cadastrarAdm(){
             objAdmDto.setEmail(emailAdm);
             objAdmDto.setSenha(senhaAdm);
             objAdmDto.setIdentificacaoAdm(identificacaoAdm);
+            objAdmDto.setIdade(idade);
             //mandar o que precisa para dao
             admDAO objAdmDao = new admDAO();
             objAdmDao.cadastrarAdm(objAdmDto);
+            }
 }
     
     
@@ -412,13 +437,20 @@ private void listarValoresAdm(){
         
         ArrayList<admDTO> listaAdm = objAdmDao.listarAdm();
         
+        
+        
         for(int i=0;i<listaAdm.size();i++){
             model.addRow(new Object[]{//adiciona linha e abro o objeto para montar as colunas
                 listaAdm.get(i).getIdAdm(),
                 listaAdm.get(i).getNomeAdm(),
                 listaAdm.get(i).getEmailAdm(),
-                listaAdm.get(i).getSenhaAdm()
+                listaAdm.get(i).getSenhaAdm(),
+                listaAdm.get(i).getIdentificacaoAdm(),
+                listaAdm.get(i).getIdade(),
+                   
+               
             });
+           
         }
         
     } catch (Exception e) {
@@ -434,6 +466,7 @@ private void CarregarCamposAdm(){
     txtNomeAdm.setText(tabelaAdm.getModel().getValueAt(carregar, 1).toString());
     txtEmailAdm.setText(tabelaAdm.getModel().getValueAt(carregar,2).toString());
     txtSenhaAdm.setText(tabelaAdm.getModel().getValueAt(carregar,3).toString());
+    txtIdade.setText(tabelaAdm.getModel().getValueAt(carregar, 4).toString());
 }
 
 private void LimparCamposAdm(){
@@ -441,30 +474,40 @@ private void LimparCamposAdm(){
     txtNomeAdm.setText("");
     txtEmailAdm.setText("");
     txtSenhaAdm.setText("");
+    txtIdade.setText("");
     txtNomeAdm.requestFocus();//limpou e ira para o campo de nome para editar
 }
 
 private void alterarAdm(){
-    int idAdm;
+    int idAdm, idade;
     String nomeAdm , emailAdm , senhaAdm;
     int identificacaoAdm = 1;
+    
+    if(txtIdAdm.getText().equals("")){
+        JOptionPane.showMessageDialog(null, "Para alterar, é preciso o id do funcionário");
+    }else{
     idAdm= Integer.parseInt(txtIdAdm.getText());//conversao de inteiro para string
     nomeAdm = txtNomeAdm.getText();
     emailAdm = txtEmailAdm.getText();
     senhaAdm = new String(txtSenhaAdm.getPassword()).trim();
+    idade=Integer.parseInt(txtIdade.getText());
    admDTO objAdmDto = new admDTO();
    objAdmDto.setIdAdm(idAdm);
    objAdmDto.setNome(nomeAdm);
    objAdmDto.setEmail(emailAdm);
    objAdmDto.setSenha(senhaAdm);
    objAdmDto.setIdentificacaoAdm(identificacaoAdm);
+   objAdmDto.setIdade(idade);
    admDAO objAdmDao = new admDAO();
    objAdmDao.alterarAdm(objAdmDto);
-     
+    }
     }
 
 private void excluirAdm(){
     int idAdm;
+    if(txtIdAdm.getText().equals("")){
+        JOptionPane.showMessageDialog(null, "Para excluir, é preciso do id do funcionário");
+    }else{
     idAdm = Integer.parseInt(txtIdAdm.getText());
     admDTO objAdmDto = new admDTO();
     
@@ -472,6 +515,6 @@ private void excluirAdm(){
     
     admDAO objAdmDao = new admDAO();
     objAdmDao.excluirAdm(objAdmDto);
-    
+    }
    }
 }

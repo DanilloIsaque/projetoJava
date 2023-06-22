@@ -44,6 +44,7 @@ public class frmCategoriaVIEW extends javax.swing.JFrame {
         btnAlterarCategoria = new javax.swing.JButton();
         btnLimparValores = new javax.swing.JButton();
         btnVoltar = new javax.swing.JButton();
+        btnExcluirCategoria = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -106,6 +107,13 @@ public class frmCategoriaVIEW extends javax.swing.JFrame {
             }
         });
 
+        btnExcluirCategoria.setText("Excluir");
+        btnExcluirCategoria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirCategoriaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -141,6 +149,10 @@ public class frmCategoriaVIEW extends javax.swing.JFrame {
                 .addGap(58, 58, 58)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnExcluirCategoria)
+                .addGap(108, 108, 108))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -168,7 +180,9 @@ public class frmCategoriaVIEW extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnLimparValores)
                     .addComponent(btnAlterarCategoria))
-                .addContainerGap(60, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(btnExcluirCategoria)
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         pack();
@@ -210,6 +224,12 @@ public class frmCategoriaVIEW extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_btnVoltarActionPerformed
 
+    private void btnExcluirCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirCategoriaActionPerformed
+        excluirCategoria();
+        limparCategoria();
+        listarValoresCategoria();
+    }//GEN-LAST:event_btnExcluirCategoriaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -250,6 +270,7 @@ public class frmCategoriaVIEW extends javax.swing.JFrame {
     private javax.swing.JButton btnAlterarCategoria;
     private javax.swing.JButton btnCadastrarCategoria;
     private javax.swing.JButton btnCarregarValoresCategoria;
+    private javax.swing.JButton btnExcluirCategoria;
     private javax.swing.JButton btnLimparValores;
     private javax.swing.JButton btnVoltar;
     private javax.swing.JLabel jLabel1;
@@ -265,12 +286,16 @@ public class frmCategoriaVIEW extends javax.swing.JFrame {
         String categoriaNome;
         categoriaNome = txtCategoriaNome.getText();
         
+         if(txtCategoriaNome.getText().equals("")){
+             JOptionPane.showMessageDialog(null, "É necessário inserir um valor no campo nome");
+         }else{
+        
         categoriaDTO objCategoriaDto = new categoriaDTO();
         objCategoriaDto.setNomeCategoria(categoriaNome);
         
         categoriaDAO objCategoriaDao = new categoriaDAO();
         objCategoriaDao.cadastrarCategoria(objCategoriaDto);
-        
+         }
     }
     
     private void listarValoresCategoria(){
@@ -313,7 +338,9 @@ public class frmCategoriaVIEW extends javax.swing.JFrame {
     private void alterarCategoria(){
         int idCategoria;
         String nomeCategoria;
-        
+        if(txtIdCategoria.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Para alterar, é preciso do id da categoria");
+        }else{
          idCategoria= Integer.parseInt(txtIdCategoria.getText());//conversao de inteiro para string
            nomeCategoria = txtCategoriaNome.getText();
            
@@ -324,6 +351,22 @@ public class frmCategoriaVIEW extends javax.swing.JFrame {
            
            categoriaDAO objCategoriaDao = new categoriaDAO();
            objCategoriaDao.alterarCategoria(objCategoriaDto);
-           
+        }
+    }
+    
+    private void excluirCategoria(){
+         int id= Integer.parseInt(txtIdCategoria.getText());
+          if(txtIdCategoria.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Para excluir, é preciso do id da categoria");
+        }else{
+         categoriaDTO objCategoriaDto = new categoriaDTO();
+         objCategoriaDto.setIdCategoria(id);
+         
+         categoriaDAO objCategoriaDao = new categoriaDAO();
+         objCategoriaDao.excluirCategoria(objCategoriaDto);
+         
+         JOptionPane.showMessageDialog(null, "Categoria excluida com sucesso");
+         
+         }
     }
 }

@@ -136,7 +136,7 @@ public class frmVerProduto extends javax.swing.JFrame {
             //primeiro chamamos a dao de categoria
             produtoDAO objprodutodao = new produtoDAO();
             DefaultTableModel model = (DefaultTableModel)tbProduto.getModel();
-            model.setNumRows(0);
+           model.setNumRows(0);
 
             ArrayList<produtoDTO> listaProduto = objprodutodao.listarProduto();
 

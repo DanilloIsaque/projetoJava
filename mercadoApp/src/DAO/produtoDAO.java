@@ -100,7 +100,7 @@ public class produtoDAO {
     }
 
     public ArrayList<produtoDTO> listarProduto() {
-        String sql = " SELECT p.id_produto,p.nome_produto,p.preco_produto,p.qtd_estoque, c.nome_categoria FROM produto p INNER JOIN categoria c ON p.id_categoria = c.id_categoria";
+        String sql = " SELECT p.id_produto,p.nome_produto,p.preco_produto,p.qtd_estoque, c.nome_categoria FROM produto p INNER JOIN categoria c ON p.id_categoria = c.id_categoria ORDER BY p.nome_produto";
         conn = new ConexaoDAO().conecta();
 
         try {
@@ -192,5 +192,52 @@ public class produtoDAO {
          } catch (SQLException e) {
             JOptionPane.showMessageDialog(null,"erro na classe produtoDAO , excluirProduto" + e);
          }
+     }
+     public produtoDTO consultaEstoque (int id){
+         String sql="SELECT id_produto,qtd_estoque FROM produto where id_produto="+id ;
+         conn=new ConexaoDAO().conecta();
+         
+         try {
+               pstm = conn.prepareStatement(sql);
+            rs = pstm.executeQuery();
+
+            while (rs.next()) {//enquanto tiver linhas, vai ficar nesse looping
+                produtoDTO objProdutoDto = new produtoDTO();
+                objProdutoDto.setId_produto(rs.getInt("id_produto"));
+                objProdutoDto.setQtd_produto(rs.getInt("qtd_estoque"));
+               
+                pstm.execute();
+                pstm.close();
+                 return objProdutoDto;
+                
+            }
+         } catch (SQLException e) {
+               JOptionPane.showMessageDialog(null,"erro na classe produtoDAO , consultaEstoque" + e);
+         }
+        return null;
+     }
+     
+     public boolean alterarEstoqueProduto(ArrayList<produtoDTO> lista){
+
+         conn= new ConexaoDAO().conecta();
+         
+         try {
+             
+           for(int i = 0; i<lista.size();i++){
+            pstm=conn.prepareStatement("UPDATE produto SET qtd_estoque ="
+                 +lista.get(i).getQtd_produto()+ "  where id_produto ="
+            +lista.get(i).getId_produto()
+            );
+               pstm.execute();
+           }
+              
+           
+              pstm.close();
+              
+              return true;
+         } catch (SQLException e) {
+             JOptionPane.showMessageDialog(null,"erro na classe produtoDAO , consultaEstoque" + e);
+         }
+         return false;
      }
 }

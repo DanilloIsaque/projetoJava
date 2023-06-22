@@ -384,7 +384,10 @@ public class frmProdutoVIEW extends javax.swing.JFrame {
         double precoProduto;
         int idCategoria;
         
+        if(txtNomeProduto.getText().equals("")|| txtPrecoProduto.getText().equals("")||txtQtdProduto.getText().equals("")){
         
+            JOptionPane.showMessageDialog(null, "Algum campo faltou ser preenchido");
+        }else{
         nomeProduto = txtNomeProduto.getText();
         precoProduto =Double.parseDouble(txtPrecoProduto.getText());
         qtdProduto=Integer.parseInt(txtQtdProduto.getText());
@@ -398,7 +401,7 @@ public class frmProdutoVIEW extends javax.swing.JFrame {
         
         produtoDAO objProdutoDao = new produtoDAO();
         objProdutoDao.cadastrarPoduto(objProdutoDto);
-        
+        }
     }
     
     private void carregarCampos(){
@@ -413,9 +416,15 @@ public class frmProdutoVIEW extends javax.swing.JFrame {
     }
 
     private void alterarProduto(){
+        
+        
         int idProduto,idCategoria,qtd;
         String nome;
         double valor;
+        if(txtIdAdm.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Para alterar, é preciso do id do produto");
+        }else{
+        
         idProduto=Integer.parseInt(txtIdAdm.getText());
         nome = txtNomeProduto.getText();
         valor = Double.parseDouble(txtPrecoProduto.getText());
@@ -431,7 +440,7 @@ public class frmProdutoVIEW extends javax.swing.JFrame {
         
         produtoDAO objProdutoDao= new produtoDAO();
         objProdutoDao.alterarProduto(objProdutoDto);
-    
+        }
         
     }
             
@@ -445,6 +454,10 @@ public class frmProdutoVIEW extends javax.swing.JFrame {
 }
     
     private void excluirProduto(){
+        
+        if(txtIdAdm.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Para excluir, é preciso o id do produto");
+        }else{
         int id= Integer.parseInt(txtIdAdm.getText());
         
         produtoDTO objProdutoDto= new produtoDTO();
@@ -452,6 +465,7 @@ public class frmProdutoVIEW extends javax.swing.JFrame {
         
         produtoDAO objProdutoDao= new produtoDAO();
         objProdutoDao.excluirProduto(objProdutoDto);
+    }
     }
 
 }

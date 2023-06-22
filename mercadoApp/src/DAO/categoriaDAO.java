@@ -70,4 +70,22 @@ public class categoriaDAO {
         JOptionPane.showMessageDialog(null,"Erro na classe categoriaDAO em alterar" +e);
         }
     }
+    
+     public void excluirCategoria(categoriaDTO objCategoriaDto){
+         String sql="DELETE FROM categoria WHERE id_categoria=?";
+         conn= new ConexaoDAO().conecta();
+         
+         try {
+             pstm = conn.prepareStatement(sql);
+             pstm.setInt(1,objCategoriaDto.getIdCategoria());
+             pstm.execute();
+             pstm.close();
+             
+             
+             
+         } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null,"erro na classe produtoDAO , excluirProduto" + e);
+         }
+     }
+    
 }

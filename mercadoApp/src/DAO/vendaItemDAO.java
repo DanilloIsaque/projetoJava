@@ -22,6 +22,7 @@ public class vendaItemDAO {
     
     public boolean cadastrarProdutoVenda(ArrayList<Item> objItem){
         String sql = "INSERT INTO venda_item (id_venda,id_produto,valor_venda,quantidade) VALUES (?,?,?,?)";
+        
         conn = new ConexaoDAO().conecta();
     
         try {
@@ -33,6 +34,10 @@ public class vendaItemDAO {
             pstm.setInt(2, objItem.get(i).getIDproduto());
             pstm.setDouble(3,objItem.get(i).getValor());
             pstm.setInt(4, objItem.get(i).getQuantidade());
+            
+            
+           
+             
             
             pstm.execute();
             pstm.close();

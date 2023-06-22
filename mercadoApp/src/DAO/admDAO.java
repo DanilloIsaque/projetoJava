@@ -27,7 +27,7 @@ public class admDAO {
     ArrayList<admDTO> listaAdm = new ArrayList<>();
     
     public void cadastrarAdm(admDTO objAdmDto ){
-        String sql = "INSERT INTO funcionario (nome_funcionario,usuario_funcionario,senha_funcionario,identificacao_funcionario) values(?,?,?,?)";
+        String sql = "INSERT INTO funcionario (nome_funcionario,usuario_funcionario,senha_funcionario,identificacao_funcionario,idade_funcionario) values(?,?,?,?,?)";
         conn = new ConexaoDAO().conecta();
         
         try {
@@ -36,6 +36,7 @@ public class admDAO {
             pstm.setString(2,objAdmDto.getEmailAdm());
             pstm.setString(3,objAdmDto.getSenhaAdm());
             pstm.setInt(4,objAdmDto.getIdentificacaoAdm());
+            pstm.setInt(5, objAdmDto.getIdade());
             
             JOptionPane.showMessageDialog(null,"Cadastrado com sucesso!");
             pstm.execute();
@@ -63,7 +64,8 @@ public class admDAO {
                 objAdmDto.setNome(rs.getString("nome_funcionario"));
                 objAdmDto.setEmail(rs.getString("usuario_funcionario"));
                 objAdmDto.setSenha(rs.getString("senha_funcionario"));
-                
+                objAdmDto.setIdentificacaoAdm(rs.getInt("identificacao_funcionario"));
+                objAdmDto.setIdade(rs.getInt("idade_funcionario"));
                 listaAdm.add(objAdmDto);
                 
             }
@@ -74,7 +76,7 @@ public class admDAO {
      }
     
     public void alterarAdm(admDTO objAdmDto){
-          String sql = "UPDATE funcionario SET nome_funcionario=?, usuario_funcionario=?, senha_funcionario=?,identificacao_funcionario=? WHERE id_funcionario=?";
+          String sql = "UPDATE funcionario SET nome_funcionario=?, usuario_funcionario=?, senha_funcionario=?,identificacao_funcionario=?,idade_funcionario=? WHERE id_funcionario=?";
         conn = new ConexaoDAO().conecta();
         
         try {
@@ -83,7 +85,8 @@ public class admDAO {
             pstm.setString(2,objAdmDto.getEmailAdm());
             pstm.setString(3,objAdmDto.getSenhaAdm());
             pstm.setInt(4,objAdmDto.getIdentificacaoAdm());
-            pstm.setInt(5,objAdmDto.getIdAdm());
+            pstm.setInt(5, objAdmDto.getIdade());
+            pstm.setInt(6,objAdmDto.getIdAdm());
             JOptionPane.showMessageDialog(null,"Alterado com sucesso!");
             
             pstm.execute();

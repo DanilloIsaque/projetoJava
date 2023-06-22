@@ -12,6 +12,8 @@ public class admDTO {
      private String emailAdm;
      private String senhaAdm;
      private int identificacaoAdm;
+     private int idade;
+     
      
     public String getNomeAdm(){
         return nomeAdm;
@@ -36,6 +38,15 @@ public class admDTO {
         this.senhaAdm= senhaAdm;
     }
 
+    public int getIdade() {
+        return idade;
+    }
+
+    public void setIdade(int idade) {
+        this.idade = idade;
+    }
+
+    
     /**
      * @return the idAdm
      */
